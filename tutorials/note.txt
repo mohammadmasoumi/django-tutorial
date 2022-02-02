@@ -1,0 +1,10 @@
+# first Session
+
+1. What is Django
+2. Web programming concepr
+3. Setup venv
+4. Start project
+5. Start App
+6. Define a request handler (HttpResponse)
+7. Define route
+8. Define template
