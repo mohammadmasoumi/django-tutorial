@@ -5,6 +5,6 @@
 3. Setup venv
 4. Start project
 5. Start App
-6. Define a request handler (HttpResponse)
-7. Define route
+6. Define a request handler (from django.http import HttpResponse)
+7. Define route (from django.urls import path)
 8. Define template
