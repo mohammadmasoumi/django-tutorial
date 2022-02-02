@@ -12,3 +12,35 @@ Django is a high-level Python web framework that encourages rapid development an
 
 ## What you will learn?
 
+- Install Django
+- Django project
+- Django application
+- Setup virtual env
+- Django Settings
+- Django Models
+- Django URLs
+- Django Views
+- Django Forms
+- Django Authentication
+- Django Middleware
+- Django Admin
+- Django Internationalization
+- Django Security
+- Django tempalte
+- Django rest-framework (DRF)
+- DRF Routers
+- DRF Serializers
+- DRF ViewSets
+- DRF Permissions
+- DRF Authentication
+- Nginx Webserver
+- Dockerize project
+- Django + Celery Integration
+- Celery Task
+- Celery Periodic Task
+- Sentry Integration
+- Logging
+- Databases
+- Database Design
+- PostgreSQL
+- MongoDB 
