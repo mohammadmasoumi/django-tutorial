@@ -21,3 +21,13 @@ def say_hello(request):
     # ...
 
     return HttpResponse('Hello World')
+
+
+def say_hello_with_template(request):
+    """[summary]
+
+    Args:
+        request ([type]): [description]
+    """
+
+    return render(request, 'hello.html', {'name': 'Mohammad'})
