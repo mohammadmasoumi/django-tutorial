@@ -48,3 +48,4 @@ Django is a high-level Python web framework that encourages rapid development an
 ## Tutorial
 
  - [01-introduction](https://github.com/mohammadmasoumi/django-tutorial/tree/master/tutorials/01-introduction)
+ - [02-create-app](https://github.com/mohammadmasoumi/django-tutorial/tree/master/tutorials/02-create-app)
