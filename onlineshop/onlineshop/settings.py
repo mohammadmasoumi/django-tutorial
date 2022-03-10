@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'playground',
-    'store'
+    'store',
+    'tags'
 ]
 
 
