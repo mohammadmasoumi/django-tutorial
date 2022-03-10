@@ -14,11 +14,3 @@ Customer.objects.delete(name="ali")
 # .databases
 # .tables
 # .help
-
-# python manage.py makemigrations
-# python manage.py migrate
-# python manage.py createsuperuser 
-# email
-# password
-# paasword
-# 
