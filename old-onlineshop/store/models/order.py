@@ -2,20 +2,14 @@
 from django.db import models
 from .products import *
 from .customers import *
-from store.enums import PaymentStatusChoices
 
 __all__ = ('Order', 'OrderItem')
 
 
-
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.PROTECT)
+    # created_at
     placed_at = models.DateTimeField(auto_now_add=True)
-    payment_status = models.CharField(
-        max_length=1, 
-        choices=PaymentStatusChoices.choices, 
-        default=PaymentStatusChoices.PENDING
-    )
 
 
 class OrderItem(models.Model):
