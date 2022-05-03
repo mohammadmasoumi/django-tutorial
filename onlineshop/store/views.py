@@ -17,8 +17,45 @@ def product_view(request):
     count = 0
     products, customers = [], []
 
-    # simple queryset
+    # ---------------------------------- Simple queryset ----------------------------------
+    # fetch all elements from database
+    query_set = Product.objects.all() # this line doesn't hit the database
+    
+    # Chaining filters, django hits the database once
+    # query_set = Product.objects.filter().filter().filter().order_by()
 
+    # First five elements
+    # print(query_set[0:5])
+    # [Caution]: you can't use negative indexes.
+
+    # lazy loading 
+    # Django evaluates queryset whenever you use it, for instance, casting to list, for loop over it
+    
+    # Under below circumstances, django evaluates querysets.
+
+    # 1. cast to list
+    # print(list(query_set))
+
+    # 2. loop over it
+    # for product in query_set:
+    #     print(property)
+
+    # 3. access to one element
+    # print(query_set[0])
+
+    # [Caution]: In this case, be careful about django queryset caching.
+    
+    # 1. first approach
+    # fetch first element of queryset, not all of them
+    print(query_set[0])
+    # fetch all elements from database, the previous one included!
+    print(list(query_set))
+
+    # 2. second approach
+    # fetch all elements from database and cache them.
+    print(list(query_set))
+    # reach from cache queryset 
+    print(query_set[0])
 
 
 
