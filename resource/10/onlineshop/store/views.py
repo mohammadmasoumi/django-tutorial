@@ -17,11 +17,6 @@ def product_view(request):
     count = 0
     products, customers = [], []
 
-    # simple queryset
-
-
-
-
     # products = Product.objects.filter(title="product-0").annotate(new_id=F("product_id"))
     # print(products[0].new_id)
 
