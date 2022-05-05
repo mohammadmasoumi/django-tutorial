@@ -74,7 +74,7 @@ class Customer(models.Model):
 
 class CustomerProxy(Customer):
 
-    class Meta(Customer.Meta): 
+    class Meta: 
         # The default ordering for the object, for use when obtaining lists of objects:
         # Customer.objects.filter().order_by("-birth_date")
         # ordering = ['-birth_date']
