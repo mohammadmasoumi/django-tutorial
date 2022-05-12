@@ -25,6 +25,9 @@ class Promotion(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=255)
 
+    class Meta:
+        ordering = ['title']
+
     def __str__(self):
         return self.title
 
@@ -50,6 +53,7 @@ class Product(models.Model):
     class Meta:
         # models.Index(fields=['title', 'first_name']) # compound index
         # models.Index(fields=['title']) # single
+        ordering = ['title']
         indexes = [
             models.Index(fields=['title']),
         ]
