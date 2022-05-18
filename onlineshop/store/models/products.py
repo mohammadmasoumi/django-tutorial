@@ -12,14 +12,7 @@ class Promotion(models.Model):
     def __str__(self):
         return f"{self.descrition}-{self.discount}"
 
-# class PromotionProduct(models.Model):
-#     promotion_id = models.ForeignKey(Promotion, on_delete=models.CASCADE)
-#     product_id = models.ForeignKey('Product2', on_delete=models.CASCADE)
-#     extra_field = models.CharField(max_length=255)
-
-
-# class Product2(models.Model):
-#     promotion = models.ManyToManyField(Promotion, through=PromotionProduct)
+    __repr__ = __str__
 
 
 class Collection(models.Model):
@@ -31,6 +24,8 @@ class Collection(models.Model):
     def __str__(self):
         return self.title
 
+    __repr__ = __str__
+
 
 class Product(models.Model):
     product_id = models.CharField(
@@ -38,8 +33,6 @@ class Product(models.Model):
         primary_key=True, 
         default=id_generator
     ) 
-    # https://docs.djangoproject.com/en/4.0/topics/migrations/#reversing-migrations-1
-    # unique=True
     slug = models.SlugField(max_length=100)
     title = models.CharField(max_length=100) # varchar(100)
     description = models.TextField()
@@ -51,8 +44,6 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        # models.Index(fields=['title', 'first_name']) # compound index
-        # models.Index(fields=['title']) # single
         ordering = ['title']
         indexes = [
             models.Index(fields=['title']),
@@ -60,3 +51,5 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.product_id}-{self.title}"
+
+    __repr__ = __str__
