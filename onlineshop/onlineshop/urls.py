@@ -20,9 +20,10 @@ from django.conf.urls.static import static
 
 # admin attribute
 # https://docs.djangoproject.com/en/4.0/ref/contrib/admin/#adminsite-attributes
-admin.site.site_header = 'Onlineship Admin'
-admin.site.index_title = 'Admin'
-
+# Django administration
+# admin.site.site_header = 'Onlineship Admin'
+# Site administration
+# admin.site.index_title = 'Admin'
 
 urlpatterns = [
     path('admin/', admin.site.urls),

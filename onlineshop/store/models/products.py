@@ -17,7 +17,10 @@ class Promotion(models.Model):
 
 class Collection(models.Model):
     title = models.CharField(max_length=255)
-
+    # circular dependency
+    # '+' do no create reverse relation in product
+    featured_product = models.ForeignKey(
+        'Product', on_delete=models.SET_NULL, null=True, related_name='+')
     class Meta:
         ordering = ['title']
 
@@ -29,21 +32,20 @@ class Collection(models.Model):
 
 class Product(models.Model):
     product_id = models.CharField(
-        max_length=16, 
-        primary_key=True, 
-        default=id_generator
+        max_length=16, primary_key=True, default=id_generator
     ) 
     slug = models.SlugField(max_length=100)
     title = models.CharField(max_length=100) # varchar(100)
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2) # 9999.99
+    # 9999.99 max_digit: 6, decimal_places: 2
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2) 
     invetory = models.PositiveIntegerField()
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
-    promotion = models.ManyToManyField(Promotion)
+    promotions = models.ManyToManyField(Promotion)
     last_update = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
+    class Meta: 
         ordering = ['title']
         indexes = [
             models.Index(fields=['title']),
