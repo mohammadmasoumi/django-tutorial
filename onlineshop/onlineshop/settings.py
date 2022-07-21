@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'onlineshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get("POSTGRES_DATABASE_NAME", "app-server"),
-        'USER': os.environ.get("POSTGRES_DATABASE_USER", "app-server"),
-        'PASSWORD': os.environ.get("POSTGRES_DATABASE_PASSWORD", ""),
+        'NAME': os.environ.get("POSTGRES_DATABASE_NAME", "onlineshop"),
+        'USER': os.environ.get("POSTGRES_DATABASE_USER", "postgres"),
+        'PASSWORD': os.environ.get("POSTGRES_DATABASE_PASSWORD", "mft2022"),
         'HOST': os.environ.get("POSTGRES_DATABASE_HOST", "127.0.0.1"),
         'PORT': os.environ.get("POSTGRES_DATABASE_PORT", "5432"),
     },

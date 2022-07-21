@@ -4,6 +4,8 @@ from store.enums import MembershipChoices
 __all__ = ('Customer', 'Address', 'CustomerProxy')
 
 class CustomerManager(models.Manager):
+    # Customer.objects.filter()
+
     def filter_with_fullname(self, *args, **kwargs):
         return self.filter(**kwargs).annotate(
             full_name=models.functions.Concat(models.F('first_name'), models.Value(' '), models.F('last_name')
@@ -15,7 +17,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    phone_number = models.CharField(max_length=11)
+    phone = models.CharField(max_length=254)
     membership = models.CharField(
         max_length=1, 
         choices=MembershipChoices.choices, 
