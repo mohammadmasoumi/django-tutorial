@@ -1,37 +1,58 @@
 from django.shortcuts import render
-from django.views.generic.detail import DetailView
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.views import View
+from django.http import HttpResponse
 from store.models import *
 from tags.models import *
 
-__all__ = ('product_view', 'ProdcutDetailView')
+
+__all__ = ('product_view', 'ProductView', 'ProductDetailView', 'ProductListView')
 
 
 def product_view(request):
 
+    if request.method == "POST":
+        pass
+    elif request.method == "GET":
+        pass
+
     return render(request, 'empty.html')
 
+# View
+# ship
+# sheep
+class ProductView(View):
+
+    def get(self, request):
+        return HttpResponse("Hello")
 
 
-class ProdcutDetailView(DetailView):
+# get_object, get_queryset, get_context_data
+class ProductDetailView(DetailView):
     model = Product
-    queryset = Product.objects.all()
-    template_name = "product_template"
-    pk_url_kwarg: str
-
+    context_object_name = "asghar"
+    template_name: str = "product_template.html"
+    slug_url_kwarg = "asghar_id"
+    slug_field = "slug"
+    queryset = Product.objects.filter(inventory__gte=10)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
 
-    def get(self, request, *args, **kwargs):
-        """
-        def get(self, request, *args, **kwargs):
-            self.object = self.get_object()
-            context = self.get_context_data(object=self.object)
-            return self.render_to_response(context)
-        """
 
-        return super().get(request, *args, **kwargs)
+class ProductListView(ListView):
+    model = Product
+    template_name: str = "product_list_template.html"
+    paginate_by = 50
+    queryset = Product.objects.filter(inventory__gte=10)
+    allow_empty = False
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
