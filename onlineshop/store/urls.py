@@ -9,7 +9,8 @@ urlpatterns = [
     # kwrgs = {"rest_id": 22}
     # view(**kwargs) 
     path('my-product/<slug:asghar_id>', ProductDetailView.as_view()),
-    path('my-product-list/', ProductListView.as_view()),
+    path('my-product-list/', ProductListView.as_view(), name='product-list'),
     path('my-product-list/<str:page>', ProductListView.as_view()),
-
+    path('my-product-create/', ProductCreateView.as_view()),
+    path('my-product-update/<int:pk>', ProductUpdateView.as_view())
 ]

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+<body>
+    <h1>
+        Product
+    </h1>
+    {{ count }}
+    <!-- {{product.collection.title}} -->
+    <table>
+        <tr>
+          <th style="color: blueviolet; width: 80px;">Title</th>
+          <th style="color: blueviolet; width: 80px;">CreatedAt</th>
+          <th style="color: blueviolet; width: 80px;">NewId</th>
+          <!-- <th style="color: greenyellow;">Collection</th>
+          <th style="color: darksalmon;">Promotions</th> -->
+        </tr>
+        {% for product in products %}
+            <tr>
+                <td style="color: blueviolet; width: 80px;">{{ product.title }}</td>
+                <td style="color: darkred; width: 170px;">{{product.created_at}}</td>
+                <td style="color: darkred; width: 170px;">{{product.new_id}}</td>
+                <!-- <td style="color: greenyellow;">{{product.collection.title}}</td>
+                <td style="color: darksalmon">
+                    <ul>
+                        {% for product in products %}
+                            {% for p in product.promotion.all %}
+                            <li>
+                                {{p.discount}} - {{p.descrition}}
+                            </li>    
+                            {% endfor %}
+                        {% endfor %}   
+                    </ul>
+                </td> -->
+            </tr>
+        {% endfor %}
+      </table>
+
+</body>
+</html>

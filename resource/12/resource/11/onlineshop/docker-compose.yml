@@ -1,0 +1,32 @@
+
+services:
+  backend:
+    build:
+      context: .
+    env_file:
+      - deployment/app-server/app-server.env
+    ports:
+      - 8000:8000
+    #                                           module:variable 
+    entrypoint: gunicorn -c gunicorn.conf.py onlineshop.wsgi:application
+    networks:
+    - backend-tier
+  
+  postgres:
+    image: dockerhub.ir/postgres
+    env_file:
+      - deployment/postgres/postgres.env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend-tier
+    restart: on-failure:5
+
+networks:
+  backend-tier:
+    driver: bridge
+
+volumes:
+  postgres-data: null

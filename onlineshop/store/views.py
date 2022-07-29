@@ -1,15 +1,24 @@
 from django.shortcuts import render
 from django.utils import timezone
+from django.urls import reverse_lazy
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views import View
 from django.http import HttpResponse
 from store.models import *
 from tags.models import *
 
 
-__all__ = ('product_view', 'ProductView', 'ProductDetailView', 'ProductListView')
+__all__ = (
+    'product_view', 
+    'ProductView', 
+    'ProductDetailView', 
+    'ProductListView', 
+    'ProductCreateView', 
+    'ProductUpdateView'
+)
 
 
 def product_view(request):
@@ -56,3 +65,62 @@ class ProductListView(ListView):
         context = super().get_context_data(**kwargs)
         context['now'] = timezone.now()
         return context
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    template_name_suffix = '_create_form'
+    # template_name: str = 'product_create_form.html'
+    fields = [
+        'slug',
+        'title',
+        'description',
+        'unit_price',
+        'inventory',
+        # 'collection',
+    ]
+
+    def form_valid(self, form):
+        print("---------------------------")
+        print(form.data)
+        print("---------------------------")
+
+        return super(ProductCreateView, self).form_valid(form)
+
+    # def get_form(self, form_class):
+    #     initials = {
+    #         'collection': ['mamad', 'asghar']
+    #     }
+    #     form = form_class(initial=initials)
+    #     return form
+
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    pk_url_kwarg = "pk"
+    template_name_suffix = '_update_form'
+    fields = [
+        'slug',
+        'title',
+    ]
+
+    def form_valid(self, form):
+        print("---------------------------")
+        print(form.data)
+        print("---------------------------")
+
+        return super().form_valid(form)
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    pk_url_kwarg = "pk"
+    success_url = reverse_lazy('product-list')
+    
+
+
+
+
+
+
