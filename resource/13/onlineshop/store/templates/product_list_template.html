@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+</head> 
+<body>
+    <!-- {{ paginator }} -->
+    {{page_obj}}
+    {{is_paginated}}
+    <!-- {{product.collection.title}} -->
+    <table>
+        <tr>
+          <th style="color: blueviolet; width: 80px;">Title</th>
+          <th style="color: blueviolet; width: 80px;">CreatedAt</th>
+          <th style="color: blueviolet; width: 80px;">Slug</th>
+          <!-- <th style="color: greenyellow;">Collection</th>
+          <th style="color: darksalmon;">Promotions</th> -->
+        </tr>
+        {% for product in object_list %}
+            <tr>
+                <td style="color: blueviolet; width: 80px;">{{ product.title }}</td>
+                <td style="color: darkred; width: 170px;">{{product.created_at}}</td>
+                <td style="color: darkred; width: 170px;">{{product.slug}}</td>
+                <!-- <td style="color: greenyellow;">{{product.collection.title}}</td>
+                <td style="color: darksalmon">
+                    <ul>
+                        {% for product in products %}
+                            {% for p in product.promotion.all %}
+                            <li>
+                                {{p.discount}} - {{p.descrition}}
+                            </li>    
+                            {% endfor %}
+                        {% endfor %}   
+                    </ul>
+                </td> -->
+               
+            </tr>
+           
+        {% endfor %}
+      </table>
+    {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
