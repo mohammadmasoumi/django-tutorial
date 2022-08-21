@@ -1,0 +1,29 @@
+pip install ipython
+python manage.py shell
+
+from store.customer import Customer
+Customer.objects.create(..data)
+Customer.objects.all()
+Customer.objects.filter(name="ali").values_list("last_name", )
+Customer.objects.delete(name="ali")
+
+# https://sqlite.org/download.html
+# sqlite-tools-win32-x86-3380000.zip	
+# https://sqlite.org/2022/sqlite-tools-win32-x86-3380000.zip
+# .open FILE_NAME
+# .databases
+# .tables
+# .help
+
+# python manage.py makemigrations
+# python manage.py migrate
+# python manage.py createsuperuser 
+# email
+# password
+# paasword
+# 
+
+# python manage.py sqlmigrate store(app_label) 0004_add_field(migration_file) 
+
+# pip freeze > requirements.txt
+# pip install -r requirements.txt
